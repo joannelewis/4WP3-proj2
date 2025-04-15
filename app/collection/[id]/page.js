@@ -1,11 +1,11 @@
 import React from 'react';
 
-// This is a server component that fetches data for a specific item
+//server component to fetch data for a specific item
 const ItemPage = async ({ params }) => {
   const res = await fetch(`http://localhost:4000/collection/${params.id}`);
   const item = await res.json();
 
-  // Check if the item exists
+  // Check if item exists
   if (!item) {
     return <h1>Uh oh spaghettio! This page does not exist!</h1>;
   }
