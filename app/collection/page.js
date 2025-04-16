@@ -8,10 +8,14 @@ const CollectionPage = async () => {
   return (
     <div>
       <h1>Data</h1>
-      <ul>
+      <a href="/collection" style={{ display: 'block', marginBottom: '20px', color: 'blue' }}>Back</a>
+      <ul style={{ listStyleType: 'none', padding: 0, border: '1px solid #ccc', borderRadius: '5px', overflow: 'hidden' }}>
         {items.map(item => (
-          <li key={item.id}>
-            {item.deadline} - <a href={`/collection/${item.id}`}>more</a>
+          <li key={item.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #ccc', backgroundColor: 'white' }}>
+            <div>
+              <strong>Deadline:</strong> {item.deadline}
+            </div>
+            <a href={`/collection/${item.id}`} style={{ color: 'blue', textDecoration: 'none' }}>more</a>
           </li>
         ))}
       </ul>
