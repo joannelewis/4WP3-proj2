@@ -1,16 +1,11 @@
+'use server'
 import React from 'react';
 
 //Fetch items from the API
 const AdminPage = async () => {
+  'use client'
   const res = await fetch('http://localhost:4000/collection');
   const items = await res.json();
-
-  //delete item
-  const handleDelete = async (id) => {
-    await fetch(`http://localhost:4000/collection/${id}`, {
-      method: 'DELETE',
-    });
-  };
 
   return (
     <div>
@@ -33,7 +28,7 @@ const AdminPage = async () => {
               <td>{item.deadline}</td>
               <td>{item.completed ? 'Yes' : 'No'}</td>
               <td>
-                <button>D</button>
+                <button onClick={() => Delete(item.id)}>D</button>
               </td>
               <td>
                 <a href={`/admin/edit/${item.id}`}>E</a>
@@ -45,5 +40,20 @@ const AdminPage = async () => {
     </div>
   );
 };
+
+async function Delete(id) {
+  'use server'
+
+  await fetch(`http://localhost:4000/collection/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+
+// const Button = async (id) => {
+//   return (
+//     {/* <button onClick={() => handleDelete(id)}>D</button> */ }
+//   );
+// }
 
 export default AdminPage;
